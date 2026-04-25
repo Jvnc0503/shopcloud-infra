@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret_password_aqui}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-shopcloud_productos}
     ports:
-      - "${MYSQL_PORT:-3306}:3306"
+      - "${MYSQL_PORT:-8005}:3306"
     networks:
       - red_bd
     volumes:
