@@ -55,6 +55,14 @@ services:
       retries: 10
       start_period: 20s
 
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - "${ADMINER_PORT:-8080}:8080"
+    networks:
+      - red_bd
+
 networks:
   red_bd:
     driver: bridge
