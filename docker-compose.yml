@@ -7,11 +7,12 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE:-shopcloud_productos}
     ports:
       - "${MYSQL_PORT:-3306}:3306"
+    networks:
+      - red_bd
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test:
-        ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -26,11 +27,12 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret_password_aqui}
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
+    networks:
+      - red_bd
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test:
-        ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -42,15 +44,20 @@ services:
     command: ["mongod", "--bind_ip_all"]
     ports:
       - "${MONGO_PORT:-27017}:27017"
+    networks:
+      - red_bd
     volumes:
       - mongo_data:/data/db
     healthcheck:
-      test:
-        ["CMD", "mongosh", "--quiet", "--host", "127.0.0.1", "--eval", "db.adminCommand({ ping: 1 })"]
+      test: ["CMD", "mongosh", "--quiet", "--host", "127.0.0.1", "--eval", "db.adminCommand({ ping: 1 })"]
       interval: 10s
       timeout: 5s
       retries: 10
       start_period: 20s
+
+networks:
+  red_bd:
+    driver: bridge
 
 volumes:
   mysql_data:
