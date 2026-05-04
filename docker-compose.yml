@@ -1,0 +1,13 @@
+services:
+  ms1-productos:
+    image: ${MS1_IMAGE:-jesval06/shopcloud-ms1-productos:latest}
+    container_name: shopcloud-ms1-productos
+    restart: unless-stopped
+    ports:
+      - "${MS1_PORT:-8080}:8080"
+    networks:
+      - shopcloud-net
+
+networks:
+  shopcloud-net:
+    driver: bridge
