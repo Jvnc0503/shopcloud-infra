@@ -1,45 +1,45 @@
 services:
   ms1-productos:
-    image: ${MS1_IMAGE:-jesval06/shopcloud-ms1-productos:latest}
+    image: jesval06/shopcloud-ms1-productos:latest
     container_name: ms1-productos
     restart: unless-stopped
     env_file:
       - .env.ms1
     ports:
-      - "${MS1_PORT:-8001}:8001"
+      - "8001:8001"
     networks:
       - shopcloud-net
   
   ms2-usuarios:
-    image: ${MS2_IMAGE:-jesval06/shopcloud-ms2-pedidos:latest}
+    image: jesval06/shopcloud-ms2-pedidos:latest
     container_name: ms2-usuarios
     restart: unless-stopped
     env_file:
       - .env.ms2
     ports:
-      - "${MS2_PORT:-8002}:8002"
+      - "8002:8002"
     networks:
       - shopcloud-net
   
   ms3-pedidos:
-    image: ${MS3_IMAGE:-jesval06/shopcloud-ms3-usuarios:latest}
+    image: jesval06/shopcloud-ms3-usuarios:latest
     container_name: ms3-pedidos
     restart: unless-stopped
     env_file:
       - .env.ms3
     ports:
-      - "${MS3_PORT:-8003}:8003"
+      - "8003:8003"
     networks:
       - shopcloud-net
 
   ms4-historial:
-    image: ${MS4_IMAGE:-jesval06/shopcloud-ms4-historial:latest}
+    image: jesval06/shopcloud-ms4-historial:latest
     container_name: ms4-historial
     restart: unless-stopped
     env_file:
       - .env.ms4
     ports:
-      - "${MS4_PORT:-8004}:8004"
+      - "8004:8004"
     networks:
       - shopcloud-net
 
