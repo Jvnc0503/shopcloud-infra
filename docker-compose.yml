@@ -1,7 +1,7 @@
 services:
   ms1-productos:
     image: ${MS1_IMAGE:-jesval06/shopcloud-ms1-productos:latest}
-    container_name: shopcloud-ms1-productos
+    container_name: ms1-productos
     restart: unless-stopped
     env_file:
       - .env.ms1
@@ -12,7 +12,7 @@ services:
   
   ms2-usuarios:
     image: ${MS2_IMAGE:-jesval06/shopcloud-ms2-pedidos:latest}
-    container_name: shopcloud-ms2-usuarios
+    container_name: ms2-usuarios
     restart: unless-stopped
     env_file:
       - .env.ms2
@@ -23,7 +23,7 @@ services:
   
   ms3-pedidos:
     image: ${MS3_IMAGE:-jesval06/shopcloud-ms3-usuarios:latest}
-    container_name: shopcloud-ms3-pedidos
+    container_name: ms3-pedidos
     restart: unless-stopped
     env_file:
       - .env.ms3
@@ -34,7 +34,7 @@ services:
 
   ms4-historial:
     image: ${MS4_IMAGE:-jesval06/shopcloud-ms4-historial:latest}
-    container_name: shopcloud-ms4-historial
+    container_name: ms4-historial
     restart: unless-stopped
     env_file:
       - .env.ms4
