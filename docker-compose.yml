@@ -10,7 +10,7 @@ services:
     networks:
       - shopcloud-net
   
-  ms2-usuarios:
+  ms2-pedidos:
     image: jesval06/shopcloud-ms2-pedidos:latest
     container_name: ms2-usuarios
     restart: unless-stopped
@@ -21,7 +21,7 @@ services:
     networks:
       - shopcloud-net
   
-  ms3-pedidos:
+  ms3-usuarios:
     image: jesval06/shopcloud-ms3-usuarios:latest
     container_name: ms3-pedidos
     restart: unless-stopped
