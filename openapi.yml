@@ -10,10 +10,8 @@ tags:
     description: Catálogo de productos e inventario
   - name: MS2 Pedidos
     description: Gestión de pedidos
-  - name: Autenticación
-    description: Registro e inicio de sesión
-  - name: Usuarios
-    description: Gestión de usuarios
+  - name: MS3 Usuarios
+    description: Registro, inicio de sesión y gestión de usuarios
   - name: MS4 Historial
     description: Consolidación de historial de usuario, pedidos y productos
 components:
@@ -736,7 +734,7 @@ paths:
       summary: Crear una nueva cuenta (Registro)
       operationId: ms3Signup
       tags:
-        - Autenticación
+        - MS3 Usuarios
       requestBody:
         required: true
         content:
@@ -753,7 +751,7 @@ paths:
       summary: Iniciar sesión
       operationId: ms3Login
       tags:
-        - Autenticación
+        - MS3 Usuarios
       requestBody:
         required: true
         content:
@@ -770,7 +768,7 @@ paths:
       summary: Lista usuarios con paginación
       operationId: ms3ListarUsuarios
       tags:
-        - Usuarios
+        - MS3 Usuarios
       security:
         - bearerAuth: []
       parameters:
@@ -794,7 +792,7 @@ paths:
       summary: Obtener perfil de un usuario
       operationId: ms3ObtenerUsuario
       tags:
-        - Usuarios
+        - MS3 Usuarios
       security:
         - bearerAuth: []
       parameters:
@@ -814,7 +812,7 @@ paths:
       summary: Eliminar cuenta de usuario (solo admin)
       operationId: ms3EliminarUsuario
       tags:
-        - Usuarios
+        - MS3 Usuarios
       security:
         - bearerAuth: []
       parameters:
@@ -835,7 +833,7 @@ paths:
       summary: Actualizar dirección del usuario
       operationId: ms3ActualizarDireccion
       tags:
-        - Usuarios
+        - MS3 Usuarios
       security:
         - bearerAuth: []
       parameters:
@@ -862,7 +860,7 @@ paths:
       summary: Asignar rol a un usuario (solo admin)
       operationId: ms3AsignarRol
       tags:
-        - Usuarios
+        - MS3 Usuarios
       security:
         - bearerAuth: []
       parameters:
