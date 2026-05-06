@@ -43,6 +43,17 @@ services:
     networks:
       - shopcloud-net
 
+  ms5-analytics:
+    image: jesval06/shopcloud-ms5-analytics:latest
+    container_name: ms5-analytics
+    restart: unless-stopped
+    env_file:
+      - .env.ms5
+    ports:
+      - "8005:8005"
+    networks:
+      - shopcloud-net
+
 networks:
   shopcloud-net:
     driver: bridge
