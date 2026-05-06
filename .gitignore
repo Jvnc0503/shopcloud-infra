@@ -1,7 +1,3 @@
 # Files
 spec.pdf
-.env.example.ms1
-.env.example.ms2
-.env.example.ms3
-.env.example.ms4
-.env.example.ms5
+openapi-ms*.yml

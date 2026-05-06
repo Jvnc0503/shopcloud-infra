@@ -54,6 +54,19 @@ services:
     networks:
       - shopcloud-net
 
+  swagger-ui:
+    image: swaggerapi/swagger-ui:latest
+    container_name: swagger-ui
+    restart: unless-stopped
+    environment:
+      SWAGGER_JSON: /openapi/openapi.yml
+    volumes:
+      - ./openapi.yml:/openapi/openapi.yml:ro
+    ports:
+      - "8080:8080"
+    networks:
+      - shopcloud-net
+
 networks:
   shopcloud-net:
     driver: bridge
