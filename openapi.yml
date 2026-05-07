@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: ShopCloud - API Gateway
   version: 1.0.0
-  description: Documento consolidado del API Gateway de ShopCloud, agrupando los contratos de MS1, MS2, MS3 y MS4.
+  description: Documento consolidado del API Gateway de ShopCloud, agrupando los contratos de MS1, MS2, MS3, MS4 y MS5.
 servers:
   - url: /
 tags:
@@ -14,6 +14,8 @@ tags:
     description: Registro, inicio de sesión y gestión de usuarios
   - name: MS4 Historial
     description: Consolidación de historial de usuario, pedidos y productos
+  - name: MS5 Analytics
+    description: Consultas analiticas e health check del servicio MS5
 components:
   securitySchemes:
     bearerAuth:
@@ -322,6 +324,42 @@ components:
         - usuario_id
         - nro_pedidos
         - total_gastado
+    MS5HealthCheck:
+      type: object
+      required:
+        - status
+        - service
+      properties:
+        status:
+          type: string
+          example: ok
+        service:
+          type: string
+          example: ms5-analytics
+    MS5QueryResult:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - success
+            - error
+            - timeout
+        query_id:
+          type: string
+        data:
+          type: array
+          description: Array de filas, donde cada fila es un arreglo de valores string
+          items:
+            type: array
+            items:
+              type: string
+        state:
+          type: string
+        message:
+          type: string
     MS3SignupRequest:
       type: object
       required:
@@ -960,3 +998,68 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MS4ErrorResponse'
+  /:
+    get:
+      summary: Health check
+      operationId: ms5HealthCheck
+      tags:
+        - MS5 Analytics
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MS5HealthCheck'
+  /analytics/ventas-por-categoria:
+    get:
+      summary: Ventas Categoria
+      operationId: ms5VentasPorCategoria
+      tags:
+        - MS5 Analytics
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MS5QueryResult'
+  /analytics/top-productos:
+    get:
+      summary: Top Productos
+      operationId: ms5TopProductos
+      tags:
+        - MS5 Analytics
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MS5QueryResult'
+  /analytics/usuarios-activos:
+    get:
+      summary: Usuarios Activos
+      operationId: ms5UsuariosActivos
+      tags:
+        - MS5 Analytics
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MS5QueryResult'
+  /analytics/ingresos-por-mes:
+    get:
+      summary: Ingresos Mes
+      operationId: ms5IngresosPorMes
+      tags:
+        - MS5 Analytics
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MS5QueryResult'

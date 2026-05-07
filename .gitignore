@@ -1,3 +1,4 @@
 # Files
 spec.pdf
 openapi-ms*.yml
+.venv/
