@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: Documento consolidado del API Gateway de ShopCloud, agrupando los contratos de MS1, MS2, MS3, MS4 y MS5.
 servers:
-  - url: /
+  - url: https://j0v80gv9x5.execute-api.us-east-1.amazonaws.com
 tags:
   - name: MS1 Productos
     description: Catálogo de productos e inventario
