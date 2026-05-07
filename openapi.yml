@@ -15,7 +15,7 @@ tags:
   - name: MS4 Historial
     description: Consolidación de historial de usuario, pedidos y productos
   - name: MS5 Analytics
-    description: Consultas analiticas e health check del servicio MS5
+    description: Analítica con Athena
 components:
   securitySchemes:
     bearerAuth:
@@ -324,18 +324,6 @@ components:
         - usuario_id
         - nro_pedidos
         - total_gastado
-    MS5HealthCheck:
-      type: object
-      required:
-        - status
-        - service
-      properties:
-        status:
-          type: string
-          example: ok
-        service:
-          type: string
-          example: ms5-analytics
     MS5QueryResult:
       type: object
       required:
@@ -998,67 +986,54 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MS4ErrorResponse'
-  /:
-    get:
-      summary: Health check
-      operationId: ms5HealthCheck
-      tags:
-        - MS5 Analytics
-      responses:
-        '200':
-          description: Service is healthy
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MS5HealthCheck'
   /analytics/ventas-por-categoria:
     get:
-      summary: Ventas Categoria
-      operationId: ms5VentasPorCategoria
+      summary: Ventas por categoría
+      operationId: ms5ObtenerVentasPorCategoria
       tags:
         - MS5 Analytics
       responses:
         '200':
-          description: Successful Response
+          description: Respuesta exitosa
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MS5QueryResult'
   /analytics/top-productos:
     get:
-      summary: Top Productos
-      operationId: ms5TopProductos
+      summary: Top productos
+      operationId: ms5ObtenerTopProductos
       tags:
         - MS5 Analytics
       responses:
         '200':
-          description: Successful Response
+          description: Respuesta exitosa
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MS5QueryResult'
   /analytics/usuarios-activos:
     get:
-      summary: Usuarios Activos
-      operationId: ms5UsuariosActivos
+      summary: Usuarios activos
+      operationId: ms5ObtenerUsuariosActivos
       tags:
         - MS5 Analytics
       responses:
         '200':
-          description: Successful Response
+          description: Respuesta exitosa
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MS5QueryResult'
   /analytics/ingresos-por-mes:
     get:
-      summary: Ingresos Mes
-      operationId: ms5IngresosPorMes
+      summary: Ingresos por mes
+      operationId: ms5ObtenerIngresosPorMes
       tags:
         - MS5 Analytics
       responses:
         '200':
-          description: Successful Response
+          description: Respuesta exitosa
           content:
             application/json:
               schema:
