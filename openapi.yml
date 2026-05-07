@@ -886,6 +886,8 @@ paths:
     get:
       summary: Obtener historial consolidado de usuario
       operationId: ms4ObtenerHistorial
+      security:
+        - bearerAuth: []
       tags:
         - MS4 Historial
       parameters:
@@ -901,6 +903,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MS4HistorialResponse'
+        '401':
+          description: Falta el token de autorización
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '404':
           description: Usuario no encontrado
           content:
@@ -917,6 +925,8 @@ paths:
     get:
       summary: Obtener resumen de compras de usuario
       operationId: ms4ObtenerResumenHistorial
+      security:
+        - bearerAuth: []
       tags:
         - MS4 Historial
       parameters:
@@ -932,6 +942,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MS4ResumenHistorialResponse'
+        '401':
+          description: Falta el token de autorización
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '404':
           description: Usuario no encontrado
           content:
