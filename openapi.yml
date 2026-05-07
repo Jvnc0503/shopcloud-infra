@@ -23,6 +23,14 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          example: Falta el token de autorización
+      required:
+        - detail
     MS1CategoriaCreate:
       type: object
       properties:
